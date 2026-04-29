@@ -35,3 +35,13 @@ exports.login = async (data) => {
 
   return { user, token };
 };
+
+exports.getUserById = async(id)=> {
+  const user = await User.findById(id).select("-password");
+
+  if(!user) {
+    throw new Error("user not found!");
+  }
+
+  return user;
+}
